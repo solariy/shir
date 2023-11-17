@@ -17,7 +17,7 @@ export function HomePage() {
   // wss://id.skfx.io/sch
 
   useEffect(() => {
-    let socket = new WebSocket("wss://example.com");
+    let socket = new WebSocket("ws://id.skfx.io:5412/sch");
 
     socket.onopen = function(e) {
       // первый запрос на получение auth ключа
@@ -72,7 +72,7 @@ export function HomePage() {
               ?
               'Загрузка...'
               :
-              <QRCode value={`https://sch.skfx.io/qr?challenge=${authKey}`} size={150} bgColor='#ffffff' fgColor='#000000' className={styles.qr__code} />
+              <QRCode value={`http://sch.skfx.io/qr?challenge=${authKey}`} size={150} bgColor='#ffffff' fgColor='#000000' className={styles.qr__code} />
             }
           </section>
         </div>
