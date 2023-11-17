@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Layout } from '../../components/Layout/Layout';
 import styles from './HomePage.module.scss';
 import QRCode from "react-qr-code";
 import { useCookies } from 'react-cookie';
-
+import { NotificationsContext } from '../../contexts/NotificationsContext';
+import { v4 } from 'uuid';
 
 export function HomePage() {
 
   const [authKey, setAuthKey] = useState('');
 
   const [cookies, setCookie] = useCookies(['SKFX-SCH-AUTH']);
+
+  const {notifications, setNotifications} = useContext(NotificationsContext);
 
   // wss://id.skfx.io/sch
 
@@ -42,8 +45,11 @@ export function HomePage() {
     };
 
     socket.onerror = function(error) {
-      console.log('error');
-      // alert to notifications
+      setNotifications([...notifications, {
+        id: v4(),
+        text: 'Произошла ошибка.',
+        time: 5000,
+      }]);
     };
 
   }, [setCookie]);

@@ -9,6 +9,17 @@
   }
 }
 
+@keyframes hide {
+  0% {
+    position: relative;
+    right: 50px;
+  }
+  100% {
+    position: relative;
+    right: -500px;
+  }
+}
+
 .notification {
   display: flex;
   justify-content: space-between;
@@ -22,6 +33,10 @@
   color: #0D0D0D;
   padding: 0px 20px;
   cursor: pointer;
+}
+
+.notification_hidden {
+  animation: hide 1s 1 forwards;
 }
 
 .text {

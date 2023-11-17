@@ -13,7 +13,7 @@ export function Layout (props: ILayoutProps) {
     <div className={styles.layout}>
         <Header />
         <main className={styles.container}>
-          {/* <Notifications /> */}
+          <Notifications />
           {
             props.children
           }

@@ -1,6 +1,6 @@
 import styles from './Notification.module.scss';
 import crossIcon from '../../static/icons/cross.svg';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NotificationsContext } from '../../contexts/NotificationsContext';
 
 export interface INotificationProps {
@@ -13,14 +13,23 @@ export function Notification (props: INotificationProps) {
 
   const {notifications, setNotifications} = useContext(NotificationsContext);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     // notifications.splice(notifications.indexOf(notifications.find(notif => notif.id === props.id)), 1);
-  //   }, props.time);
-  // }, []);
+  const [hidden, setHidden] = useState(false);
+
+  const removeNotification = () => {
+    setHidden(true);
+    setTimeout(() => {
+      setNotifications(notifications.filter(notification => notification.id !== props.id));
+    }, 1000);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      removeNotification();
+    }, 1000 + props.time);
+  }, []);
 
   return (
-    <div className={styles.notification}>
+    <div className={hidden ? styles.notification + ' ' + styles.notification_hidden : styles.notification} onClick={removeNotification}>
       <div className={styles.text}>
         {props.text}
       </div>
