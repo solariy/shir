@@ -1,8 +1,53 @@
+import { useEffect, useState } from 'react';
 import { Layout } from '../../components/Layout/Layout';
 import styles from './HomePage.module.scss';
 import QRCode from "react-qr-code";
+import { useCookies } from 'react-cookie';
+
 
 export function HomePage() {
+
+  const [authKey, setAuthKey] = useState('');
+
+  const [cookies, setCookie] = useCookies(['SKFX-SCH-AUTH']);
+
+  // wss://id.skfx.io/sch
+
+  useEffect(() => {
+    let socket = new WebSocket("wss://example.com");
+
+    socket.onopen = function(e) {
+      // первый запрос на получение auth ключа
+      socket.send(JSON.stringify({
+        type: 1,
+      }));
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 4) { //когда человек отсканировал qr и зашел (LRCResponse)
+        // ставим куку
+        setCookie('SKFX-SCH-AUTH', data.mainData);
+        // редирект
+        window.location.href = data.additionalData;
+      } else if (data.type === 3) { // expired (LRCExpired)
+        // отправляем новый запрос на токен
+        socket.send(JSON.stringify({
+          type: 1,
+        }));
+      } else if (data.type === 2) { //ставит изначальный ключ LRCChallenge
+        // зашиваем ключ в qr
+        setAuthKey(data.mainData);
+      }
+    };
+
+    socket.onerror = function(error) {
+      console.log('error');
+      // alert to notifications
+    };
+
+  }, [setCookie]);
+
   return (
       <Layout>
         <div className={styles.content}>
@@ -16,7 +61,13 @@ export function HomePage() {
           </section>
           <section className={styles.qr}>
             <div className={styles.qr__login}>Вход для учеников</div>
-            <QRCode value='https://sch.skfx.io/login?clid=abcdef' size={150} bgColor='#ffffff' fgColor='#000000' className={styles.qr__code} />
+            {
+              authKey === ''
+              ?
+              'Загрузка...'
+              :
+              <QRCode value={`https://sch.skfx.io/qr?challenge=${authKey}`} size={150} bgColor='#ffffff' fgColor='#000000' className={styles.qr__code} />
+            }
           </section>
         </div>
       </Layout>
