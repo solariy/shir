@@ -17,7 +17,8 @@ export function HomePage() {
   // wss://id.skfx.io/sch
 
   useEffect(() => {
-    let socket = new WebSocket("ws://id.skfx.io:5412/sch");
+
+    let socket = new WebSocket("ws://id.skfx.io:5412/ws");
 
     socket.onopen = function(e) {
       // первый запрос на получение auth ключа
@@ -26,8 +27,8 @@ export function HomePage() {
       }));
     };
 
-    socket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
+    socket.onmessage = async (event) => {
+      const data = JSON.parse(await event.data.text());
       if (data.type === 4) { //когда человек отсканировал qr и зашел (LRCResponse)
         // ставим куку
         setCookie('SKFX-SCH-AUTH', data.mainData);
@@ -55,7 +56,7 @@ export function HomePage() {
   }, [setCookie]);
 
   return (
-      <Layout>
+      <Layout theme='dark'>
         <div className={styles.content}>
           <section className={styles.slogan}>
             <h1 className={styles.slogan__header}>Облачная среда разработки</h1>
@@ -72,7 +73,7 @@ export function HomePage() {
               ?
               'Загрузка...'
               :
-              <QRCode value={`http://sch.skfx.io/qr?challenge=${authKey}`} size={150} bgColor='#ffffff' fgColor='#000000' className={styles.qr__code} />
+              <QRCode value={`https://t.me/skfxschool_bot?start=auth-${authKey}`} size={150} bgColor='#ffffff' fgColor='#000000' className={styles.qr__code} />
             }
           </section>
         </div>

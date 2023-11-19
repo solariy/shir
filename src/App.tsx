@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { INotification } from './types/INotification';
 import { NotificationsContext } from './contexts/NotificationsContext';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import { HomePage } from './pages/HomePage/HomePage';
 import { ScanPage } from './pages/ScanPage/ScanPage';
 import { WorkPage } from './pages/WorkPage/WorkPage';
-import { INotification } from './types/INotification';
+import { MyPage } from './pages/MyPage/MyPage';
 
 function App() {
 
@@ -17,6 +19,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/workspace' element={<WorkPage />} />
           <Route path='/qr' element={<ScanPage />} />
+          <Route path='/my' element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </NotificationsContext.Provider>

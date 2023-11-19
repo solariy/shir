@@ -1,0 +1,66 @@
+.content {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 50px;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu__options {
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 50px;
+}
+
+.menu__option {
+  font-size: 40px;
+  font-weight: 500;
+  color: #afafaf;
+  cursor: pointer;
+  @media screen and (max-width: 600px) {
+    font-size: 20px;
+  }
+}
+
+.menu__option_selected {
+  color: #000000;
+}
+
+.menu__buttons {
+  width: 30%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 50px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 50px;
+  background-color: #3974A1;
+  color: #ffffff;
+  border-radius: 15px;
+  cursor: pointer;
+}

@@ -5,12 +5,13 @@ import { Header } from '../Header/Header';
 import { Notifications } from './../Notifications/Notifications';
 
 export interface ILayoutProps {
-  children: string | JSX.Element | React.ReactChild | React.ReactFragment | React.ReactPortal | boolean | null | undefined
+  children: string | JSX.Element | React.ReactChild | React.ReactFragment | React.ReactPortal | boolean | null | undefined,
+  theme: 'dark' | 'light'
 }
 
 export function Layout (props: ILayoutProps) {
   return (
-    <div className={styles.layout}>
+    <div className={props.theme === 'light' ? styles.layout + ' ' + styles.layout_light : styles.layout}>
         <Header />
         <main className={styles.container}>
           <Notifications />
