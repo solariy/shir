@@ -1,4 +1,4 @@
-.class {
+.group {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,15 +9,15 @@
   font-size: 20px;
 }
 
-.class__name {
+.group__name {
   width: 30%;
 }
 
-.class__units {
+.group__units {
   width: 30%;
 }
 
-.class__more {
+.group__more {
   display: flex;
   justify-content: flex-end;
   align-items: center;

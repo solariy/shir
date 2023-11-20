@@ -6,13 +6,14 @@ import { Notifications } from './../Notifications/Notifications';
 
 export interface ILayoutProps {
   children: string | JSX.Element | React.ReactChild | React.ReactFragment | React.ReactPortal | boolean | null | undefined,
-  theme: 'dark' | 'light'
+  theme: 'dark' | 'light',
+  mode?: 'student' | 'teacher'
 }
 
 export function Layout (props: ILayoutProps) {
   return (
     <div className={props.theme === 'light' ? styles.layout + ' ' + styles.layout_light : styles.layout}>
-        <Header />
+        <Header mode={props.mode} />
         <main className={styles.container}>
           <Notifications />
           {

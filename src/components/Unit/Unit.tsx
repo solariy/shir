@@ -7,7 +7,6 @@ import { v4 } from 'uuid';
 export interface IUnitProps {
   name: string;
   unitID: string;
-  setUnitID: Function;
 }
 
 export function Unit(props: IUnitProps) {
@@ -67,7 +66,7 @@ export function Unit(props: IUnitProps) {
       </div>
       <div className={styles.unit__actions}>
         <div className={styles.action}>открыть рабочее пространство</div>
-        <div className={styles.action} onClick={() => props.setUnitID(props.unitID)}>код привязки</div>
+        <a href="/my/qr" className={styles.action}>код привязки</a>
         <div className={styles.action} onClick={() => deleteUnit(props.unitID)}>удалить</div>
       </div>
     </div>

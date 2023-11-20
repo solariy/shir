@@ -19,7 +19,7 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/workspace' element={<WorkPage />} />
           <Route path='/qr' element={<ScanPage />} />
-          <Route path='/my' element={<MyPage />} />
+          <Route path='/my/:category?/:id?' element={<MyPage />} />
         </Routes>
       </BrowserRouter>
     </NotificationsContext.Provider>

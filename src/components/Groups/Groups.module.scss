@@ -1,4 +1,4 @@
-.classes {
+.groups {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -7,7 +7,7 @@
   height: 100%;
 }
 
-.classes__list {
+.groups__list {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -19,7 +19,7 @@
   overflow-y: scroll;
 }
 
-.classes__header {
+.groups__header {
   width: 100%;
   display: flex;
   justify-content: flex-start;

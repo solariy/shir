@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import styles from './AddClass.module.scss';
+import styles from './AddGroup.module.scss';
 import backIcon from '../../static/icons/back.svg';
 import { useCookies } from 'react-cookie';
 import { useContext } from 'react';
 import { NotificationsContext } from '../../contexts/NotificationsContext';
 import { v4 } from 'uuid';
 
-export interface IAddClassProps {
-  setClassID: Function;
-}
-
-export function AddClass(props: IAddClassProps) {
+export function AddGroup() {
   const { notifications, setNotifications } = useContext(NotificationsContext);
 
   const [groupName, setGroupName] = useState('');
@@ -31,14 +27,7 @@ export function AddClass(props: IAddClassProps) {
       })
         .then((res) => {
           if (res.status === 200) {
-            setNotifications([
-              ...notifications,
-              {
-                id: v4(),
-                text: 'Вы успешно создали группу',
-                time: 5000,
-              },
-            ]);
+            window.location.href = '/my/groups';
           } else {
             setNotifications([
               ...notifications,
@@ -81,7 +70,6 @@ export function AddClass(props: IAddClassProps) {
           src={backIcon}
           alt=''
           className={styles.header__back}
-          onClick={() => props.setClassID('back')}
         />
         <div className={styles.header__name}>Добавить группу</div>
       </header>

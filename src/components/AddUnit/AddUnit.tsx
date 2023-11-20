@@ -5,11 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { NotificationsContext } from '../../contexts/NotificationsContext';
 import { v4 } from 'uuid';
 
-export interface IAddUnitProps {
-  setClassID: Function;
-}
-
-export function AddUnit (props: IAddUnitProps) {
+export function AddUnit() {
 
   const { notifications, setNotifications } = useContext(NotificationsContext);
   const [cookies] = useCookies(['SKFX-TEACHER-AUTH']);
@@ -37,14 +33,7 @@ export function AddUnit (props: IAddUnitProps) {
       })
         .then((res) => {
           if (res.status === 200) {
-            setNotifications([
-              ...notifications,
-              {
-                id: v4(),
-                text: 'Вы успешно создали ученика',
-                time: 5000,
-              },
-            ]);
+            window.location.href = '/my/groups';
           } else {
             setNotifications([
               ...notifications,
@@ -111,7 +100,6 @@ export function AddUnit (props: IAddUnitProps) {
           src={backIcon}
           alt=''
           className={styles.header__back}
-          onClick={() => props.setClassID('back')}
         />
         <div className={styles.header__name}>Добавить ученика</div>
       </header>

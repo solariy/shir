@@ -1,18 +1,16 @@
-import styles from './ClassCard.module.scss';
+import styles from './GroupList.module.scss';
 import backIcon from '../../static/icons/back.svg';
 import { Unit } from '../Unit/Unit';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 
-export interface IClassCardProps {
-  classID: string;
-  setClassID: Function;
-  setUnitID: Function;
+export interface IGroupListProps {
+  groupId: string,
 }
 
-export function ClassCard(props: IClassCardProps) {
+export function GroupList(props: IGroupListProps) {
   const [units, setUnits] = useState<any[]>([]);
-  const [classInfo, setClassInfo] = useState<any>({});
+  const [groupInfo, setGroupInfo] = useState<any>({});
 
   const [cookies] = useCookies(['SKFX-TEACHER-AUTH']);
 
@@ -24,9 +22,9 @@ export function ClassCard(props: IClassCardProps) {
     })
       .then((res) => res.json())
       .then((data: any) => {
-        setClassInfo(data.find((group: any) => group.glid === props.classID));
+        setGroupInfo(data.find((group: any) => group.glid === props.groupId));
         fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/api/teacher/groups/${props.classID}/participants`,
+          `${process.env.REACT_APP_BACKEND_URL}/api/teacher/groups/${props.groupId}/participants`,
           {
             headers: {
               authorization: cookies['SKFX-TEACHER-AUTH'],
@@ -53,9 +51,8 @@ export function ClassCard(props: IClassCardProps) {
           src={backIcon}
           alt=''
           className={styles.header__back}
-          onClick={() => props.setClassID('back')}
         />
-        <div className={styles.header__name}>{classInfo.name || ''}</div>
+        <div className={styles.header__name}>{groupInfo.name || ''}</div>
       </header>
       <div className={styles.units}>
         <header className={styles.units__header}>
@@ -68,7 +65,6 @@ export function ClassCard(props: IClassCardProps) {
               key={unit.glid}
               unitID={unit.glid}
               name={unit.fname + ' ' + unit.lname}
-              setUnitID={props.setUnitID}
             />
           ))}
         </section>

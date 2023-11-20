@@ -5,8 +5,7 @@ import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 export interface IQRLinkProps {
-  unitID: string;
-  setClassID: Function;
+  unitId: string | undefined;
 }
 
 export function QRLink(props: IQRLinkProps) {
@@ -16,7 +15,7 @@ export function QRLink(props: IQRLinkProps) {
   const [cookies] = useCookies(['SKFX-TEACHER-AUTH']);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/teacher/pupils/${props.unitID}/connect`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/teacher/pupils/${props.unitId}/connect`, {
       headers: {
         authorization: cookies['SKFX-TEACHER-AUTH']
       }
@@ -37,7 +36,6 @@ export function QRLink(props: IQRLinkProps) {
           src={backIcon}
           alt=''
           className={styles.header__back}
-          onClick={() => props.setClassID('back')}
         />
         <div className={styles.header__name}>Код привязки</div>
       </header>
