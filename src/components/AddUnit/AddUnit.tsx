@@ -12,13 +12,13 @@ export function AddUnit() {
 
   const [unitFName, setUnitFName] = useState('');
   const [unitLName, setUnitLName] = useState('');
-  const [groupID, setGroupID] = useState('');
+  const [groupId, setGroupId] = useState('');
 
   const [groups, setGroups] = useState<any[]>([]);
 
   const createUnit = (event: any) => {
     event.preventDefault();
-    if (unitFName !== '' && unitLName !== '' && groupID !== '') {
+    if (unitFName !== '' && unitLName !== '' && groupId !== '') {
       fetch(`${process.env.REACT_APP_BACKEND_URL}/api/teacher/pupils/new`, {
         method: 'POST',
         headers: {
@@ -28,7 +28,7 @@ export function AddUnit() {
         body: JSON.stringify({
           fname: unitFName,
           lname: unitLName,
-          group_id: groupID
+          group_id: groupId
         }),
       })
         .then((res) => {
@@ -106,7 +106,7 @@ export function AddUnit() {
       <form className={styles.form}>
         <input type="text" className={styles.input} placeholder="Введите имя ученика" value={unitFName} onChange={(event) => setUnitFName(event.target.value)}/>
         <input type="text" className={styles.input} placeholder="Введите фамилию ученика" value={unitLName} onChange={(event) => setUnitLName(event.target.value)} />
-        <select className={styles.input + ' ' + styles.groupSelect} defaultValue={groups[0] ? groups[0].glid : ''} onChange={(event) => setGroupID(event.target.value)}>
+        <select className={styles.input + ' ' + styles.groupSelect} defaultValue={groups[0] ? groups[0].glid : ''} onChange={(event) => setGroupId(event.target.value)}>
           {
             groups.map(group => (
               <option key={group.glid} value={group.glid} className={styles.option}>{group.name}</option>
