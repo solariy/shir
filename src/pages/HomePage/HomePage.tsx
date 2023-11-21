@@ -5,6 +5,7 @@ import QRCode from "react-qr-code";
 import { useCookies } from 'react-cookie';
 import { NotificationsContext } from '../../contexts/NotificationsContext';
 import { v4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 export function HomePage() {
 
@@ -63,9 +64,9 @@ export function HomePage() {
             <h4 className={styles.slogan__description}>Удобная система для коротких сессий разработки, ориентированная для школ и других учебных заведений</h4>
             <section className={styles.slogan__buttons}>
               <button className={styles.button}>Узнать больше</button>
-              <a href="/my">
+              <Link to="/my">
                 <button className={styles.button}>Вход для сотрудников</button>
-              </a>
+              </Link>
             </section>
           </section>
           <section className={styles.qr}>

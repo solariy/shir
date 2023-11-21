@@ -3,9 +3,10 @@ import backIcon from '../../static/icons/back.svg';
 import { Unit } from '../Unit/Unit';
 import { useState, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import { Link } from 'react-router-dom';
 
 export interface IGroupListProps {
-  groupId: string,
+  groupId: string;
 }
 
 export function GroupList(props: IGroupListProps) {
@@ -47,11 +48,9 @@ export function GroupList(props: IGroupListProps) {
   return (
     <div className={styles.card}>
       <header className={styles.header}>
-        <img
-          src={backIcon}
-          alt=''
-          className={styles.header__back}
-        />
+        <Link to='/my/groups'>
+          <img src={backIcon} alt='' className={styles.header__back} />
+        </Link>
         <div className={styles.header__name}>{groupInfo.name || ''}</div>
       </header>
       <div className={styles.units}>
@@ -63,7 +62,7 @@ export function GroupList(props: IGroupListProps) {
           {units.map((unit) => (
             <Unit
               key={unit.glid}
-              unitID={unit.glid}
+              unitId={unit.glid}
               name={unit.fname + ' ' + unit.lname}
             />
           ))}

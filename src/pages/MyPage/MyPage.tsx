@@ -1,14 +1,16 @@
-import { useCookies } from 'react-cookie';
-import { Groups } from '../../components/Groups/Groups';
-import { Layout } from '../../components/Layout/Layout';
 import styles from './MyPage.module.scss';
+import { useCookies } from 'react-cookie';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
+import { Layout } from '../../components/Layout/Layout';
 import { LoginForm } from '../../components/LoginForm/LoginForm';
+import { Groups } from '../../components/Groups/Groups';
 import { GroupList } from '../../components/GroupList/GroupList';
 import { QRLink } from '../../components/QRLink/QRLink';
 import { AddUnit } from '../../components/AddUnit/AddUnit';
 import { AddGroup } from '../../components/AddGroup/AddGroup';
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export function MyPage() {
   const [cookies] = useCookies(['SKFX-TEACHER-AUTH']);
@@ -24,12 +26,13 @@ export function MyPage() {
   return (
     <Layout theme='light' mode='teacher'>
       <div className={styles.content}>
+        {/* здесь проверка по токену */}
         {cookies['SKFX-TEACHER-AUTH'] ? (
           <>
             <section className={styles.menu}>
               <div className={styles.menu__options}>
-                <a
-                  href='/my/groups'
+                <Link
+                  to='/my/groups'
                   className={
                     category === 'groups'
                       ? styles.menu__option + ' ' + styles.menu__option_selected
@@ -37,9 +40,9 @@ export function MyPage() {
                   }
                 >
                   Мои классы
-                </a>
-                <a
-                  href='/my/works'
+                </Link>
+                <Link
+                  to='/my/works'
                   className={
                     category === 'works'
                       ? styles.menu__option + ' ' + styles.menu__option_selected
@@ -47,9 +50,9 @@ export function MyPage() {
                   }
                 >
                   Мои работы
-                </a>
-                <a
-                  href='/my/queue'
+                </Link>
+                <Link
+                  to='/my/queue'
                   className={
                     category === 'queue'
                       ? styles.menu__option + ' ' + styles.menu__option_selected
@@ -57,11 +60,15 @@ export function MyPage() {
                   }
                 >
                   Очередь на проверку
-                </a>
+                </Link>
               </div>
               <div className={styles.menu__buttons}>
-                <a href="/my/addUnit" className={styles.button}>Добавить ученика</a>
-                <a href="/my/addGroup" className={styles.button}>Создать группу</a>
+                <Link to='/my/addUnit' className={styles.button}>
+                  Добавить ученика
+                </Link>
+                <Link to='/my/addGroup' className={styles.button}>
+                  Создать группу
+                </Link>
               </div>
             </section>
             <section className={styles.main}>

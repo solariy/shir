@@ -5,6 +5,7 @@ import { useCookies } from 'react-cookie';
 import { useContext } from 'react';
 import { NotificationsContext } from '../../contexts/NotificationsContext';
 import { v4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 export function AddGroup() {
   const { notifications, setNotifications } = useContext(NotificationsContext);
@@ -66,11 +67,9 @@ export function AddGroup() {
   return (
     <div className={styles.add}>
       <header className={styles.header}>
-        <img
-          src={backIcon}
-          alt=''
-          className={styles.header__back}
-        />
+        <Link to='/my/groups'>
+          <img src={backIcon} alt='' className={styles.header__back} />
+        </Link>
         <div className={styles.header__name}>Добавить группу</div>
       </header>
       <form className={styles.form}>

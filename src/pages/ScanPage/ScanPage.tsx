@@ -2,6 +2,7 @@ import styles from './ScanPage.module.scss';
 import exampleImage from '../../static/images/example.png';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export function ScanPage () {
 
@@ -29,7 +30,7 @@ export function ScanPage () {
       <section className={styles.help}>
         <img src={exampleImage} alt="Пример QR-кода" className={styles.example} />
         <ul className={styles.steps}>
-            <li className={styles.steps__item}>1. Зайдите на <a href="https://skfx.io/school">https://skfx.io/school</a></li>
+            <li className={styles.steps__item}>1. Зайдите на <Link to="https://skfx.io/school">https://skfx.io/school</Link></li>
             <li className={styles.steps__item}>2. Отсканируйте QR-код</li>
         </ul>
       </section>

@@ -3,10 +3,11 @@ import { useCookies } from 'react-cookie';
 import { useContext } from 'react';
 import { NotificationsContext } from '../../contexts/NotificationsContext';
 import { v4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 export interface IUnitProps {
   name: string;
-  unitID: string;
+  unitId: string;
 }
 
 export function Unit(props: IUnitProps) {
@@ -14,8 +15,8 @@ export function Unit(props: IUnitProps) {
   const [cookies] = useCookies(['SKFX-TEACHER-AUTH']);
   const { notifications, setNotifications } = useContext(NotificationsContext);
 
-  const deleteUnit = (unitID: string) => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/teacher/pupils/${unitID}`, {
+  const deleteUnit = (unitId: string) => {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/teacher/pupils/${unitId}`, {
       method: 'DELETE',
       headers: {
         authorization: cookies['SKFX-TEACHER-AUTH'],
@@ -66,8 +67,8 @@ export function Unit(props: IUnitProps) {
       </div>
       <div className={styles.unit__actions}>
         <div className={styles.action}>открыть рабочее пространство</div>
-        <a href="/my/qr" className={styles.action}>код привязки</a>
-        <div className={styles.action} onClick={() => deleteUnit(props.unitID)}>удалить</div>
+        <Link to="/my/qr" className={styles.action}>код привязки</Link>
+        <div className={styles.action} onClick={() => deleteUnit(props.unitId)}>удалить</div>
       </div>
     </div>
   );
