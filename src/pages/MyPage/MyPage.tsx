@@ -11,6 +11,7 @@ import { GroupList } from '../../components/GroupList/GroupList';
 import { QRLink } from '../../components/QRLink/QRLink';
 import { AddUnit } from '../../components/AddUnit/AddUnit';
 import { AddGroup } from '../../components/AddGroup/AddGroup';
+import { Works } from '../../components/Works/Works';
 
 export function MyPage() {
   const [cookies] = useCookies(['SKFX-TEACHER-AUTH']);
@@ -41,8 +42,8 @@ export function MyPage() {
                 >
                   Мои классы
                 </Link>
-                <Link
-                  to='/my/works'
+                {/* <Link
+                  to='/my/myworks'
                   className={
                     category === 'works'
                       ? styles.menu__option + ' ' + styles.menu__option_selected
@@ -50,7 +51,7 @@ export function MyPage() {
                   }
                 >
                   Мои работы
-                </Link>
+                </Link> */}
                 <Link
                   to='/my/queue'
                   className={
@@ -74,10 +75,10 @@ export function MyPage() {
             <section className={styles.main}>
               {category === 'groups' && !!!id ? (
                 <Groups />
-              ) : category === 'works' ? (
+              ) : category === 'myworks' ? (
                 ''
-              ) : category === 'queue' ? (
-                ''
+                ) : category === 'queue' ? (
+                <Works />
               ) : category === 'qr' ? (
                 <QRLink unitId={id} />
               ) : category === 'addUnit' ? (
