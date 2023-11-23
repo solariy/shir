@@ -66,7 +66,7 @@ export function Unit(props: IUnitProps) {
         }
       </div>
       <div className={styles.unit__actions}>
-        <div className={styles.action}>открыть рабочее пространство</div>
+        <Link to="http://test.isch.skfx.io:9000/?folder=/home/coder" className={styles.action}>открыть рабочее пространство</Link>
         <Link to="/my/qr" className={styles.action}>код привязки</Link>
         <div className={styles.action} onClick={() => deleteUnit(props.unitId)}>удалить</div>
       </div>

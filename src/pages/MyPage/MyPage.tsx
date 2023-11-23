@@ -24,6 +24,9 @@ export function MyPage() {
     }
   }, [category]);
 
+  console.log(id);
+
+
   return (
     <Layout theme='light' mode='teacher'>
       <div className={styles.content}>
@@ -52,7 +55,7 @@ export function MyPage() {
                 >
                   Мои работы
                 </Link> */}
-                <Link
+                {/* <Link
                   to='/my/queue'
                   className={
                     category === 'queue'
@@ -61,7 +64,7 @@ export function MyPage() {
                   }
                 >
                   Очередь на проверку
-                </Link>
+                </Link> */}
               </div>
               <div className={styles.menu__buttons}>
                 <Link to='/my/addUnit' className={styles.button}>

@@ -74,7 +74,7 @@ export function Group(props: IGroupProps) {
           :
           ''
         }
-        <Link to={`/my/group/${props.groupId}`} className={styles.action}>Подробнее</Link>
+        <Link to={`/my/groups/${props.groupId}`} className={styles.action}>Подробнее</Link>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export function GroupList(props: IGroupListProps) {
     })
       .then((res) => res.json())
       .then((data: any) => {
-        setGroupInfo(data.find((group: any) => group.glid === props.groupId));
+        setGroupInfo(data.groups.find((group: any) => group.glid === props.groupId));
         fetch(
           `${process.env.REACT_APP_BACKEND_URL}/api/teacher/groups/${props.groupId}/participants`,
           {

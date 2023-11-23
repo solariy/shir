@@ -19,10 +19,15 @@
 
 .group__actions {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
   width: 40%;
   color: #727272;
   text-decoration: underline;
   cursor: pointer;
+  gap: 20px;
+}
+
+.action {
+  color: #727272;
 }
